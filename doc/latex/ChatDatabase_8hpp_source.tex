@@ -1,0 +1,52 @@
+\doxysection{Chat\+Database.\+hpp}
+\hypertarget{ChatDatabase_8hpp_source}{}\label{ChatDatabase_8hpp_source}\index{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Server/ChatDatabase.hpp@{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Server/ChatDatabase.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <pqxx/pqxx>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Config.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}JsonHandler.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classChatDatabase}{ChatDatabase}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{using\ }QeuryResultType\ =\ std::optional<std::vector<std::vector<std::string>>>;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}\ \&GetInstance();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ QeuryResultType\ CreateUser(\textcolor{keyword}{const}\ std::string\ \&username,\ \textcolor{keyword}{const}\ std::string\ \&passwordHash,\ \textcolor{keyword}{const}\ std::string\ \&salt);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ QeuryResultType\ ListUsers();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ QeuryResultType\ ListMessages(\textcolor{keyword}{const}\ std::string\ \&senderUsername,\ \textcolor{keyword}{const}\ std::string\ \&receiverUsername);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ QeuryResultType\ ClearDatabase();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ QeuryResultType\ GetPasswordHashByUsername(\textcolor{keyword}{const}\ std::string\ \&username);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ QeuryResultType\ GetSaltByUsername(\textcolor{keyword}{const}\ std::string\ \&username);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ QeuryResultType\ GetIDByUsername(\textcolor{keyword}{const}\ std::string\ \&username);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ QeuryResultType\ CreateMessage(\textcolor{keyword}{const}\ std::string\ \&senderID,\ \textcolor{keyword}{const}\ std::string\ \&receiverID,\ \textcolor{keyword}{const}\ std::string\ \&content);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}\ \&operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ QeuryResultType\ ExecuteQuery(\textcolor{keyword}{const}\ std::string\ \&query);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ std::string\ CreateConnectionString();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ pqxx::connection\ m\_Connection;}
+\DoxyCodeLine{00046\ \};}
+
+\end{DoxyCode}

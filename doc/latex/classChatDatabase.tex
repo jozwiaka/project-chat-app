@@ -1,0 +1,47 @@
+\doxysection{Chat\+Database Class Reference}
+\hypertarget{classChatDatabase}{}\label{classChatDatabase}\index{ChatDatabase@{ChatDatabase}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classChatDatabase_acd84addf12559393caeabbd89e8f755d}\label{classChatDatabase_acd84addf12559393caeabbd89e8f755d} 
+using {\bfseries Qeury\+Result\+Type} = std\+::optional$<$std\+::vector$<$std\+::vector$<$std\+::string$>$$>$$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classChatDatabase_afbbe71e6072e698bea0fc130ae4767c5}\label{classChatDatabase_afbbe71e6072e698bea0fc130ae4767c5} 
+Qeury\+Result\+Type {\bfseries Create\+User} (const std\+::string \&username, const std\+::string \&password\+Hash, const std\+::string \&salt)
+\item 
+\Hypertarget{classChatDatabase_a62c3826a581e8db5ce1ce62f9db33577}\label{classChatDatabase_a62c3826a581e8db5ce1ce62f9db33577} 
+Qeury\+Result\+Type {\bfseries List\+Users} ()
+\item 
+\Hypertarget{classChatDatabase_a4f1b484587a4a5f42319cad20eaf2ede}\label{classChatDatabase_a4f1b484587a4a5f42319cad20eaf2ede} 
+Qeury\+Result\+Type {\bfseries List\+Messages} (const std\+::string \&sender\+Username, const std\+::string \&receiver\+Username)
+\item 
+\Hypertarget{classChatDatabase_ac85ec9d285804d5cac19d6fd370e94a4}\label{classChatDatabase_ac85ec9d285804d5cac19d6fd370e94a4} 
+Qeury\+Result\+Type {\bfseries Clear\+Database} ()
+\item 
+\Hypertarget{classChatDatabase_a486fd10ff5d9c2d17a07112d98ecf7a8}\label{classChatDatabase_a486fd10ff5d9c2d17a07112d98ecf7a8} 
+Qeury\+Result\+Type {\bfseries Get\+Password\+Hash\+By\+Username} (const std\+::string \&username)
+\item 
+\Hypertarget{classChatDatabase_a12332f30958072e4bf3510236c11df45}\label{classChatDatabase_a12332f30958072e4bf3510236c11df45} 
+Qeury\+Result\+Type {\bfseries Get\+Salt\+By\+Username} (const std\+::string \&username)
+\item 
+\Hypertarget{classChatDatabase_a17bcdb16b0a01794da9040865ef7a426}\label{classChatDatabase_a17bcdb16b0a01794da9040865ef7a426} 
+Qeury\+Result\+Type {\bfseries Get\+IDBy\+Username} (const std\+::string \&username)
+\item 
+\Hypertarget{classChatDatabase_a84f8d4405627ea6546ffd4a1735dd369}\label{classChatDatabase_a84f8d4405627ea6546ffd4a1735dd369} 
+Qeury\+Result\+Type {\bfseries Create\+Message} (const std\+::string \&sender\+ID, const std\+::string \&receiver\+ID, const std\+::string \&content)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classChatDatabase_a6c4ded4efeae6e0522859c70bfda115c}\label{classChatDatabase_a6c4ded4efeae6e0522859c70bfda115c} 
+static \mbox{\hyperlink{classChatDatabase}{Chat\+Database}} \& {\bfseries Get\+Instance} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Server/Chat\+Database.\+hpp\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Server/Chat\+Database.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,37 @@
+\doxysection{CLI.\+hpp}
+\hypertarget{CLI_8hpp_source}{}\label{CLI_8hpp_source}\index{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Client/CLI.hpp@{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Client/CLI.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}User.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Commands.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Client.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCLI}{CLI}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classCLI}{CLI}}();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ ClearScreen();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ DisplayMenu();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ Start();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classCLI}{CLI}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCLI}{CLI}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classCLI}{CLI}}\ \&operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classCLI}{CLI}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classCommandHandler}{CommandHandler}}\ m\_CommandHandler;}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classClient}{Client}}\ m\_Client;}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classUser}{User}}\ m\_User;}
+\DoxyCodeLine{00031\ \};}
+
+\end{DoxyCode}

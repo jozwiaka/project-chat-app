@@ -1,0 +1,35 @@
+\doxysection{Json\+Handler Class Reference}
+\hypertarget{classJsonHandler}{}\label{classJsonHandler}\index{JsonHandler@{JsonHandler}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJsonHandler_af27a4cc4657969429abb42c573b7516a}\label{classJsonHandler_af27a4cc4657969429abb42c573b7516a} 
+using {\bfseries Json} = nlohmann\+::json
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJsonHandler_aa7729b9ffb3ed1d69f727f8fe8c1cf10}\label{classJsonHandler_aa7729b9ffb3ed1d69f727f8fe8c1cf10} 
+static bool {\bfseries Receive\+Json} (int socket, Json \&response)
+\item 
+\Hypertarget{classJsonHandler_a40470f7934725540691ca464e58f7e2e}\label{classJsonHandler_a40470f7934725540691ca464e58f7e2e} 
+static bool {\bfseries Send\+Json} (int socket, const Json \&request)
+\item 
+\Hypertarget{classJsonHandler_a2515555ab3f3d0a8a96c79fb58acaa37}\label{classJsonHandler_a2515555ab3f3d0a8a96c79fb58acaa37} 
+{\footnotesize template$<$typename T $>$ }\\static Json {\bfseries Convert2d\+Array\+To2d\+Json\+Array} (const std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \&v2d)
+\item 
+\Hypertarget{classJsonHandler_aadbc84a81412858f4b312c06695ec09e}\label{classJsonHandler_aadbc84a81412858f4b312c06695ec09e} 
+{\footnotesize template$<$typename T $>$ }\\static std\+::vector$<$ std\+::vector$<$ T $>$ $>$ {\bfseries Convert2d\+Json\+Array\+To2d\+Array} (const Json \&j2d)
+\item 
+\Hypertarget{classJsonHandler_a65cb5e5dd41f1467e5f5e4a33b52a21d}\label{classJsonHandler_a65cb5e5dd41f1467e5f5e4a33b52a21d} 
+{\footnotesize template$<$typename T $>$ }\\static void {\bfseries Print2D} (const std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \&v2d)
+\item 
+\Hypertarget{classJsonHandler_a3ea0d774082e62f91cc9e3bac89ad2d3}\label{classJsonHandler_a3ea0d774082e62f91cc9e3bac89ad2d3} 
+static void {\bfseries Print2D} (const Json \&j2d)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Common/Json\+Handler.\+hpp\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Common/Json\+Handler.\+cpp\end{DoxyCompactItemize}

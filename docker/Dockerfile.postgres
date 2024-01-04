@@ -1,0 +1,11 @@
+FROM postgres:latest
+
+ENV POSTGRES_DB db_chat
+ENV POSTGRES_USER jozwiaka
+ENV POSTGRES_PASSWORD password
+
+COPY db/create_tables.sql /docker-entrypoint-initdb.d/
+
+VOLUME ["/var/lib/postgresql/data"]
+
+EXPOSE 5432

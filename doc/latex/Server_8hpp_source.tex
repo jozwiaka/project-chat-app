@@ -1,0 +1,50 @@
+\doxysection{Server.\+hpp}
+\hypertarget{Server_8hpp_source}{}\label{Server_8hpp_source}\index{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Server/Server.hpp@{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Server/Server.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}ChatDatabase.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Config.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ClientHandler.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classServer}{Server}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classServer}{Server}}\ \&GetInstance();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ Start();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ Stop();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ Restart();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ Wait();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classServer}{\string~Server}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classServer}{Server}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classServer}{Server}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classServer}{Server}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classServer}{Server}}\ \&operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classServer}{Server}}\ \&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_ServerSocket;}
+\DoxyCodeLine{00037\ \ \ \ \ std::thread\ m\_ServerThread;}
+\DoxyCodeLine{00038\ \ \ \ \ std::vector<std::thread>\ m\_ClientThreads;}
+\DoxyCodeLine{00039\ \ \ \ \ std::vector<std::shared\_ptr<ClientHandler>>\ m\_ClientHandlers;}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}\ \&m\_Database;}
+\DoxyCodeLine{00041\ \ \ \ \ std::mutex\ m\_Mtx;}
+\DoxyCodeLine{00042\ \ \ \ \ std::condition\_variable\ m\_Cv;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_Stop;}
+\DoxyCodeLine{00044\ \};}
+
+\end{DoxyCode}

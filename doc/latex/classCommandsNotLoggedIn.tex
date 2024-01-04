@@ -1,0 +1,54 @@
+\doxysection{Commands\+Not\+Logged\+In Class Reference}
+\hypertarget{classCommandsNotLoggedIn}{}\label{classCommandsNotLoggedIn}\index{CommandsNotLoggedIn@{CommandsNotLoggedIn}}
+Inheritance diagram for Commands\+Not\+Logged\+In\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCommandsNotLoggedIn}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCommandsNotLoggedIn_a83836d3000694132821ceccb54311a4d}\label{classCommandsNotLoggedIn_a83836d3000694132821ceccb54311a4d} 
+{\bfseries Commands\+Not\+Logged\+In} (int client\+Socket, \mbox{\hyperlink{classUser}{User}} \&user)
+\item 
+\Hypertarget{classCommandsNotLoggedIn_afd6dbac294a6805b649f70be2467598b}\label{classCommandsNotLoggedIn_afd6dbac294a6805b649f70be2467598b} 
+void {\bfseries Sign\+In} (std\+::string username="{}"{}, std\+::string password="{}"{})
+\item 
+\Hypertarget{classCommandsNotLoggedIn_ab34a65ea08257be3b5e160df8c47811c}\label{classCommandsNotLoggedIn_ab34a65ea08257be3b5e160df8c47811c} 
+void {\bfseries Log\+In} (std\+::string username="{}"{}, std\+::string password="{}"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCommands}{Commands}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Commands} (int client\+Socket, \mbox{\hyperlink{classUser}{User}} \&user)
+\item 
+void {\bfseries Execute} (const std\+::string\+\_\+view cmd)
+\item 
+std\+::vector$<$ std\+::string $>$ {\bfseries Get\+Commands} ()
+\item 
+void {\bfseries Clear\+Database} ()
+\item 
+bool {\bfseries Check\+Connection\+With\+Server} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classCommands}{Commands}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Json} = Json\+Handler\+::\+Json
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCommands}{Commands}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUser}{User}} \& {\bfseries m\+\_\+\+User}
+\item 
+std\+::map$<$ std\+::string, std\+::function$<$ void()$>$ $>$ {\bfseries m\+\_\+\+Commands\+Functions}
+\item 
+int {\bfseries m\+\_\+\+Client\+Socket}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Client/Commands.\+hpp\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Client/Commands.\+cpp\end{DoxyCompactItemize}

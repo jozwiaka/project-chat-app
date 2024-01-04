@@ -1,0 +1,60 @@
+\doxysection{Commands\+Logged\+In Class Reference}
+\hypertarget{classCommandsLoggedIn}{}\label{classCommandsLoggedIn}\index{CommandsLoggedIn@{CommandsLoggedIn}}
+Inheritance diagram for Commands\+Logged\+In\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCommandsLoggedIn}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCommandsLoggedIn_a767b845bb6c963a57ce1e4bfd23be5c0}\label{classCommandsLoggedIn_a767b845bb6c963a57ce1e4bfd23be5c0} 
+{\bfseries Commands\+Logged\+In} (int client\+Socket, \mbox{\hyperlink{classUser}{User}} \&user)
+\item 
+\Hypertarget{classCommandsLoggedIn_a1f6ab89675d45cd3047ccb14f5d641a9}\label{classCommandsLoggedIn_a1f6ab89675d45cd3047ccb14f5d641a9} 
+void {\bfseries Message} (std\+::string receiver="{}"{}, std\+::string content="{}"{})
+\item 
+\Hypertarget{classCommandsLoggedIn_a493858cac61601b5482460c2272e0d12}\label{classCommandsLoggedIn_a493858cac61601b5482460c2272e0d12} 
+void {\bfseries Show\+Chat} (std\+::string receiver="{}"{})
+\item 
+\Hypertarget{classCommandsLoggedIn_a92d866805567768e6f690203a180acd8}\label{classCommandsLoggedIn_a92d866805567768e6f690203a180acd8} 
+void {\bfseries List\+Users} ()
+\item 
+\Hypertarget{classCommandsLoggedIn_af4cfe9391f56b6c3818c0d426a10bef6}\label{classCommandsLoggedIn_af4cfe9391f56b6c3818c0d426a10bef6} 
+void {\bfseries Log\+Out} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCommands}{Commands}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Commands} (int client\+Socket, \mbox{\hyperlink{classUser}{User}} \&user)
+\item 
+void {\bfseries Execute} (const std\+::string\+\_\+view cmd)
+\item 
+std\+::vector$<$ std\+::string $>$ {\bfseries Get\+Commands} ()
+\item 
+void {\bfseries Clear\+Database} ()
+\item 
+bool {\bfseries Check\+Connection\+With\+Server} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classCommands}{Commands}}}
+\begin{DoxyCompactItemize}
+\item 
+using {\bfseries Json} = Json\+Handler\+::\+Json
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCommands}{Commands}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUser}{User}} \& {\bfseries m\+\_\+\+User}
+\item 
+std\+::map$<$ std\+::string, std\+::function$<$ void()$>$ $>$ {\bfseries m\+\_\+\+Commands\+Functions}
+\item 
+int {\bfseries m\+\_\+\+Client\+Socket}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Client/Commands.\+hpp\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Client/Commands.\+cpp\end{DoxyCompactItemize}

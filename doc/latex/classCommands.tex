@@ -1,0 +1,50 @@
+\doxysection{Commands Class Reference}
+\hypertarget{classCommands}{}\label{classCommands}\index{Commands@{Commands}}
+Inheritance diagram for Commands\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCommands}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCommands_afe54f864be23a1c60ce0ad11bb6647d7}\label{classCommands_afe54f864be23a1c60ce0ad11bb6647d7} 
+using {\bfseries Json} = Json\+Handler\+::\+Json
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCommands_a6c088dc28488d597042a1b066059d197}\label{classCommands_a6c088dc28488d597042a1b066059d197} 
+{\bfseries Commands} (int client\+Socket, \mbox{\hyperlink{classUser}{User}} \&user)
+\item 
+\Hypertarget{classCommands_a9c0800db36eff4249d94e9f3e66bec09}\label{classCommands_a9c0800db36eff4249d94e9f3e66bec09} 
+void {\bfseries Execute} (const std\+::string\+\_\+view cmd)
+\item 
+\Hypertarget{classCommands_aa7f7e8972800bfb6866a5c99da036fc1}\label{classCommands_aa7f7e8972800bfb6866a5c99da036fc1} 
+std\+::vector$<$ std\+::string $>$ {\bfseries Get\+Commands} ()
+\item 
+\Hypertarget{classCommands_a898a0ffb40b9f47620aa1585566dfb45}\label{classCommands_a898a0ffb40b9f47620aa1585566dfb45} 
+void {\bfseries Clear\+Database} ()
+\item 
+\Hypertarget{classCommands_abb4c4468f9d68c166ddf7a725db755ff}\label{classCommands_abb4c4468f9d68c166ddf7a725db755ff} 
+bool {\bfseries Check\+Connection\+With\+Server} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCommands_ae7e8a7b753d310f742a537cb86817383}\label{classCommands_ae7e8a7b753d310f742a537cb86817383} 
+\mbox{\hyperlink{classUser}{User}} \& {\bfseries m\+\_\+\+User}
+\item 
+\Hypertarget{classCommands_a1ad517d5e5975e07d8623590f6ff645f}\label{classCommands_a1ad517d5e5975e07d8623590f6ff645f} 
+std\+::map$<$ std\+::string, std\+::function$<$ void()$>$ $>$ {\bfseries m\+\_\+\+Commands\+Functions}
+\item 
+\Hypertarget{classCommands_ae084326eff5737e810f11fc1aee725a2}\label{classCommands_ae084326eff5737e810f11fc1aee725a2} 
+int {\bfseries m\+\_\+\+Client\+Socket}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Client/Commands.\+hpp\item 
+/mnt/c/dev/\+Peer\+To\+Peer\+Chat\+App/src/\+App-\/\+Client/Commands.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,49 @@
+version: "3.1"
+
+services:
+  postgres-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.postgres
+    container_name: postgres-container
+    image: postgres-image:latest
+    restart: always
+    ports:
+      - "5433:5432"
+    networks:
+      - my_network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  server-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.server
+    container_name: server-container
+    image: server-image:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+    depends_on:
+      - postgres-service
+
+  # client-service:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/Dockerfile.client
+  #   container_name: client-container
+  #   image: client-image:latest
+  #   networks:
+  #     - my_network
+  #   depends_on:
+  #     - server-service
+  #   restart: always
+
+volumes:
+  postgres_data:
+
+networks:
+  my_network:
+    external: true

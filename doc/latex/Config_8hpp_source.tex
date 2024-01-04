@@ -1,0 +1,84 @@
+\doxysection{Config.\+hpp}
+\hypertarget{Config_8hpp_source}{}\label{Config_8hpp_source}\index{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Common/Config.hpp@{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Common/Config.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string\_view>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }Config}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{classChatDatabase}{ChatDatabase}}}
+\DoxyCodeLine{00009\ \ \ \ \ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\_view\ HOST\ =\ (std::getenv(\textcolor{stringliteral}{"{}DOCKER\_CONTAINER"{}})\ !=\ \textcolor{keyword}{nullptr})\ ?\ \textcolor{stringliteral}{"{}postgres-\/service"{}}\ :\ \textcolor{stringliteral}{"{}localhost"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ PORT\ =\ 5432;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ DBNAME\ =\ \textcolor{stringliteral}{"{}db\_chat"{}};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ USER\ =\ \textcolor{stringliteral}{"{}jozwiaka"{}};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ PASSWORD\ =\ \textcolor{stringliteral}{"{}password"{}};}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{namespace\ }Networking}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ a\ server\ is\ listening\ on\ 0.0.0.0\ for\ a\ certain\ port,\ it\ will\ accept\ connections\ from\ any\ external\ IP\ address\ or\ from\ the\ localhost.\ When\ a\ server\ binds\ to\ 127.0.0.1,\ it\ will\ only\ accept\ connections\ that\ originate\ from\ the\ same\ machine\ (the\ local\ loopback\ interface).\ It's\ used\ for\ communication\ between\ processes\ on\ the\ same\ machine}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Server\ listens\ to\ 0.0.0.0:8080}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Client\ connects\ to\ 127.0.0.1:8080}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ const\ std::string\_view\ SERVER\_IP\_ADDRESS\ =\ (std::getenv("{}DOCKER\_CONTAINER"{})\ !=\ nullptr)\ ?\ "{}server-\/service"{}\ :\ "{}127.0.0.1"{};}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SERVER\_IP\_ADDRESS\ =\ \textcolor{stringliteral}{"{}127.0.0.1"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ PORT\ =\ 8080;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ BUFFER\_SIZE\ =\ 1024;}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{namespace\ }JsonHeaders}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ ACTION\ =\ \textcolor{stringliteral}{"{}action"{}};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ STATUS\ =\ \textcolor{stringliteral}{"{}status"{}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{classUser}{User}}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ USER\ =\ \textcolor{stringliteral}{"{}user"{}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ USERS\ =\ \textcolor{stringliteral}{"{}users"{}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ USER\_ID\ =\ \textcolor{stringliteral}{"{}user\_id"{}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ USERNAME\ =\ \textcolor{stringliteral}{"{}username"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ PASSWORD\ =\ \textcolor{stringliteral}{"{}password"{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ PASSWORD\_HASH\ =\ \textcolor{stringliteral}{"{}password\_hash"{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SALT\ =\ \textcolor{stringliteral}{"{}salt"{}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ CREATED\_AT\ =\ \textcolor{stringliteral}{"{}created\_at"{}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{namespace\ }Message}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ MESSAGE\ =\ \textcolor{stringliteral}{"{}message"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ MESSAGES\ =\ \textcolor{stringliteral}{"{}messages"{}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ MESSAGE\_ID\ =\ \textcolor{stringliteral}{"{}message\_id"{}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SENDER\_ID\ =\ \textcolor{stringliteral}{"{}sender\_id"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ RECEIVER\_ID\ =\ \textcolor{stringliteral}{"{}receiver\_id"{}};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ CONTENT\ =\ \textcolor{stringliteral}{"{}content"{}};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SENT\_AT\ =\ \textcolor{stringliteral}{"{}sent\_at"{}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SENDER\_USERNAME\ =\ \textcolor{stringliteral}{"{}sender\_username"{}};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ RECEIVER\_USERNAME\ =\ \textcolor{stringliteral}{"{}receiver\_username"{}};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{namespace\ }Actions}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ CREATE\_USER\ =\ \textcolor{stringliteral}{"{}CREATE\_USER"{}};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ VERIFY\_USER\ =\ \textcolor{stringliteral}{"{}VERIFY\_USER"{}};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ LIST\_USERS\ =\ \textcolor{stringliteral}{"{}LIST\_USERS"{}};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SEND\_MESSAGE\_TO\_USER\ =\ \textcolor{stringliteral}{"{}SEND\_MESSAGE\_TO\_USER"{}};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SHOW\_CHAT\_HISTORY\_WITH\_USER\ =\ \textcolor{stringliteral}{"{}SHOW\_CHAT\_HISTORY\_WITH\_USER"{}};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ TRUNCATE\_TABLES\ =\ \textcolor{stringliteral}{"{}TRUNCATE\_TABLES"{}};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ CHECK\_CONNECTION\_WITH\_SERVER\ =\ \textcolor{stringliteral}{"{}CHECK\_CONNECTION\_WITH\_SERVER"{}};}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{namespace\ }Statuses}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ SUCCESS\ =\ \textcolor{stringliteral}{"{}Success"{}};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ std::string\_view\ ERROR\ =\ \textcolor{stringliteral}{"{}Error"{}};}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \}}
+
+\end{DoxyCode}

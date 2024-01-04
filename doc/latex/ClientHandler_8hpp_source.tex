@@ -1,0 +1,58 @@
+\doxysection{Client\+Handler.\+hpp}
+\hypertarget{ClientHandler_8hpp_source}{}\label{ClientHandler_8hpp_source}\index{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Server/ClientHandler.hpp@{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Server/ClientHandler.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <pqxx/pqxx>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}ChatDatabase.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Config.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}JsonHandler.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classClientHandler}{ClientHandler}}\ :\ \textcolor{keyword}{public}\ std::enable\_shared\_from\_this<ClientHandler>}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }Json\ =\ \textcolor{keyword}{typename}\ JsonHandler::Json;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{using\ }ActionHandler\ =\ std::function<void(\mbox{\hyperlink{classClientHandler}{ClientHandler}}\ \&,\ Json\ \&request,\ Json\ \&response)>;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classClientHandler}{ClientHandler}}(\textcolor{keywordtype}{int}\ clientSocket,\ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}\ \&database);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classClientHandler}{\string~ClientHandler}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ Start();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ Stop();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ RegisterActionHandler(\textcolor{keyword}{const}\ std::string\ \&action,\ ActionHandler\ handler);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleAction();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleCreateUser(\textcolor{keyword}{const}\ Json\ \&request,\ Json\ \&response);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleVerifyUser(\textcolor{keyword}{const}\ Json\ \&request,\ Json\ \&response);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleListUsers(\textcolor{keyword}{const}\ Json\ \&request,\ Json\ \&response);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleSendMessageToUser(\textcolor{keyword}{const}\ Json\ \&request,\ Json\ \&response);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleShowChatHistoryWithUser(\textcolor{keyword}{const}\ Json\ \&request,\ Json\ \&response);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleTruncateTables(\textcolor{keyword}{const}\ Json\ \&request,\ Json\ \&response);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ HandleCheckConnectionWithServer(\textcolor{keyword}{const}\ Json\ \&request,\ Json\ \&response);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_ClientSocket;}
+\DoxyCodeLine{00049\ \ \ \ \ std::unordered\_map<std::string,\ ActionHandler>\ m\_ActionHandlers;}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classChatDatabase}{ChatDatabase}}\ \&m\_Database;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_Stop;}
+\DoxyCodeLine{00052\ \};}
+
+\end{DoxyCode}

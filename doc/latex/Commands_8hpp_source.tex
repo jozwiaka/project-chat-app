@@ -1,0 +1,77 @@
+\doxysection{Commands.\+hpp}
+\hypertarget{Commands_8hpp_source}{}\label{Commands_8hpp_source}\index{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Client/Commands.hpp@{/mnt/c/dev/PeerToPeerChatApp/src/App-\/Client/Commands.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}JsonHandler.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Config.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}User.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCommands}{Commands}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }Json\ =\ JsonHandler::Json;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classCommands}{Commands}}(\textcolor{keywordtype}{int}\ clientSocket,\ \mbox{\hyperlink{classUser}{User}}\ \&user);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ Execute(\textcolor{keyword}{const}\ std::string\_view\ cmd);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ std::vector<std::string>\ GetCommands();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ ClearDatabase();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{bool}\ CheckConnectionWithServer();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classCommands}{\string~Commands}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classUser}{User}}\ \&m\_User;}
+\DoxyCodeLine{00033\ \ \ \ \ std::map<std::string,\ std::function<void()>>\ m\_CommandsFunctions;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_ClientSocket;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCommandsNotLoggedIn}{CommandsNotLoggedIn}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCommands}{Commands}}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classCommandsNotLoggedIn}{CommandsNotLoggedIn}}(\textcolor{keywordtype}{int}\ clientSocket,\ \mbox{\hyperlink{classUser}{User}}\ \&user);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ SignIn(std::string\ username\ =\ \textcolor{stringliteral}{"{}"{}},\ std::string\ password\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ LogIn(std::string\ username\ =\ \textcolor{stringliteral}{"{}"{}},\ std::string\ password\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCommandsLoggedIn}{CommandsLoggedIn}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classCommands}{Commands}}}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classCommandsLoggedIn}{CommandsLoggedIn}}(\textcolor{keywordtype}{int}\ clientSocket,\ \mbox{\hyperlink{classUser}{User}}\ \&user);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ Message(std::string\ receiver\ =\ \textcolor{stringliteral}{"{}"{}},\ std::string\ content\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ ShowChat(std::string\ receiver\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ ListUsers();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ LogOut();}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCommandHandler}{CommandHandler}}\ \textcolor{comment}{//\ Strategy}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ SetStrategy(\mbox{\hyperlink{classCommands}{Commands}}\ *commands);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ ExecuteCommand(\textcolor{keyword}{const}\ std::string\_view\ cmd);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ std::vector<std::string>\ ListCommands();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classCommands}{Commands}}\ *m\_Commands;}
+\DoxyCodeLine{00071\ \};}
+
+\end{DoxyCode}
