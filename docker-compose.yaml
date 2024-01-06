@@ -29,18 +29,6 @@ services:
     depends_on:
       - postgres-service
 
-  # client-service:
-  #   build:
-  #     context: .
-  #     dockerfile: docker/Dockerfile.client
-  #   container_name: client-container
-  #   image: client-image:latest
-  #   networks:
-  #     - my_network
-  #   depends_on:
-  #     - server-service
-  #   restart: always
-
 volumes:
   postgres_data:
 
