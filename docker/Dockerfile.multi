@@ -20,7 +20,6 @@ WORKDIR /app
 COPY . .
 
 ENV DOCKER_CONTAINER true
-
 RUN make build
 
 # Stage 2: Create server container
