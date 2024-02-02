@@ -1,0 +1,36 @@
+# Stage 1: Build
+FROM ubuntu:latest AS builder
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    cmake \
+    make \
+    build-essential \
+    python3 \
+    python3-pip \
+    && apt-get clean
+
+ENV PATH /root/.local/bin:$PATH
+RUN pip3 install conan
+ENV PATH /root/.conan/bin:$PATH
+RUN conan profile detect --force
+
+WORKDIR /app
+COPY . .
+
+ENV DOCKER_CONTAINER true
+
+RUN make build
+
+# Stage 2: Create server container
+FROM ubuntu:latest AS server
+WORKDIR /app
+COPY --from=builder /app/build/src/App-Server/exe_server /app
+CMD ["./exe_server"]
+
+# Stage 3: Create client container
+FROM ubuntu:latest AS client
+WORKDIR /app
+COPY --from=builder /app/build/src/App-Client/exe_client /app
+CMD ["./exe_client"]

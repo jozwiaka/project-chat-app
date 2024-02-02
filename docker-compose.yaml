@@ -18,9 +18,10 @@ services:
   server-service:
     build:
       context: .
-      dockerfile: docker/Dockerfile.server
+      dockerfile: docker/Dockerfile.multi
+      target: server
     container_name: server-container
-    image: server-image:latest
+    # image: server-image:latest
     restart: always
     ports:
       - "8080:8080"
@@ -28,6 +29,19 @@ services:
       - my_network
     depends_on:
       - postgres-service
+
+  client-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.multi
+      target: client
+    container_name: client-container
+    # image: client-image:latest
+    restart: always
+    networks:
+      - my_network
+    depends_on:
+      - server-service
 
 volumes:
   postgres_data:
