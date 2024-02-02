@@ -7,11 +7,9 @@ conan_setup:
 prepare:
 	rm -rf build
 	mkdir build
-	conan install ../../ --output-folder=build --build=missing
+	conan install ./ --output-folder=build --build=missing
 configure: prepare
 	cd build && cmake ..
 build: configure
 	cd build && cmake --build .
-run:
-	cd build && ./exe
-all: prepare configure build run
+all: prepare configure build

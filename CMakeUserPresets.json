@@ -1,0 +1,9 @@
+{
+    "version": 4,
+    "vendor": {
+        "conan": {}
+    },
+    "include": [
+        "/mnt/c/Dev/project-chat-app/build/CMakePresets.json"
+    ]
+}
