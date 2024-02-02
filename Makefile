@@ -15,7 +15,7 @@ build: configure
 run_server:
 	./build/src/App-Server/exe_server
 run_client:
-	./build/src/App-Server/exe_client
+	./build/src/App-Client/exe_client
 run_tests:
-	./build/src/App-Server/exe_tests
+	./build/tests/exe_tests
 all: prepare configure build
