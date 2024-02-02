@@ -16,6 +16,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBPQXX REQUIRED libpqxx)
 find_package(Boost REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(GTest REQUIRED)
 
 add_subdirectory(src)
 add_subdirectory(tests)
