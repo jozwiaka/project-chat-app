@@ -21,7 +21,7 @@ services:
       dockerfile: docker/Dockerfile.multi
       target: server
     container_name: server-container
-    # image: server-image:latest
+    image: server-image:latest
     restart: always
     ports:
       - "8080:8080"
@@ -36,16 +36,17 @@ services:
       dockerfile: docker/Dockerfile.multi
       target: client
     container_name: client-container
-    # image: client-image:latest
+    image: client-image:latest
     restart: always
     networks:
       - my_network
     depends_on:
       - server-service
+    stdin_open: true
+    tty: true
 
 volumes:
   postgres_data:
 
 networks:
   my_network:
-    external: true

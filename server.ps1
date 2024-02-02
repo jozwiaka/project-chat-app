@@ -1,3 +1,4 @@
 & .\Clean.ps1
-docker network create my_network
-docker-compose up --build -d
+docker-compose build
+docker-compose up -d postgres-service server-service
+docker-compose run --rm client-service

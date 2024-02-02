@@ -27,10 +27,12 @@ RUN make build
 FROM ubuntu:latest AS server
 WORKDIR /app
 COPY --from=builder /app/build/src/App-Server/exe_server /app
+ENV DOCKER_CONTAINER true
 CMD ["./exe_server"]
 
 # Stage 3: Create client container
 FROM ubuntu:latest AS client
 WORKDIR /app
 COPY --from=builder /app/build/src/App-Client/exe_client /app
+ENV DOCKER_CONTAINER true
 CMD ["./exe_client"]
