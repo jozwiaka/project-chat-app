@@ -1,5 +1,3 @@
-.PHONY: conan_setup prepare configure build run all
-
 conan_setup:
 	pip install conan
 	conan profile detect --force # Let Conan try to guess the profile, based on the current operating system and installed tools
