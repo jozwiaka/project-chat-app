@@ -1,0 +1,3 @@
+add_library(AuthenticationManager STATIC AuthenticationManager.cpp)
+target_link_libraries(AuthenticationManager PUBLIC exe_flags ${OpenSSL_LIBRARIES})
+target_include_directories(AuthenticationManager PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${OpenSSL_INCLUDE_DIRS})

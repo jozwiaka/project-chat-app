@@ -1,3 +1,6 @@
-
+add_subdirectory(ChatDatabase)
+add_subdirectory(AuthenticationManager)
+add_subdirectory(ClientHandler)
+add_subdirectory(Server)
 add_executable(exe_server main.cpp)
-target_link_libraries(exe_server PRIVATE pthread exe_flags)
+target_link_libraries(exe_server PRIVATE pthread exe_flags Server)

@@ -5,7 +5,6 @@
 #include "User.hpp"
 #include "Commands.hpp"
 #include "Client.hpp"
-#include <thread>
 #include <mutex>
 #include <future>
 

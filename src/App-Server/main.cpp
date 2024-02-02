@@ -1,5 +1,4 @@
 #include "Server.hpp"
-#include <thread>
 #include <chrono>
 
 int main()
