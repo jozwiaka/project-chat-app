@@ -17,6 +17,5 @@ pkg_check_modules(LIBPQXX REQUIRED libpqxx)
 find_package(Boost REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
-# option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 add_subdirectory(src)
-# add_subdirectory(tests)
+add_subdirectory(tests)

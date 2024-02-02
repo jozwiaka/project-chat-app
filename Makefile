@@ -12,4 +12,10 @@ configure: prepare
 	cd build && cmake ..
 build: configure
 	cd build && cmake --build .
+run_server:
+	./build/src/App-Server/exe_server
+run_client:
+	./build/src/App-Server/exe_client
+run_tests:
+	./build/src/App-Server/exe_tests
 all: prepare configure build

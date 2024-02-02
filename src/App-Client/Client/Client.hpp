@@ -5,8 +5,6 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-#include "User.hpp"
-#include "Commands.hpp"
 #include "Config.hpp"
 
 class Client
