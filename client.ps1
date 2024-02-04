@@ -1,1 +1,1 @@
-docker-compose run --rm client-service
+docker run --rm --network=my_network -it client-image

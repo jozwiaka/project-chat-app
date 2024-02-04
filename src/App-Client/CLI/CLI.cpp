@@ -2,10 +2,13 @@
 #include <memory>
 #include "User.hpp"
 #include "Commands.hpp"
+#include "CommandsLoggedIn.hpp"
+#include "CommandsNotLoggedIn.hpp"
 #include "Client.hpp"
 #include "CLI.hpp"
 #include <cstdlib>
 #include <future>
+#include "CommandHandler.hpp"
 
 void CLI::DisplayMenu()
 {
