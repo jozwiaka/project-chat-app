@@ -4,9 +4,12 @@
 #include <memory>
 #include "User.hpp"
 #include "Commands.hpp"
+#include "CommandsLoggedIn.hpp"
+#include "CommandsNotLoggedIn.hpp"
 #include "Client.hpp"
 #include <mutex>
 #include <future>
+#include "CommandHandler.hpp"
 
 class CLI
 {
