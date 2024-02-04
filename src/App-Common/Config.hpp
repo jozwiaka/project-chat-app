@@ -20,7 +20,7 @@ namespace Config
         // [Local-Client] Client connects to 127.0.0.1:8080
         // [Docker-Client] Client connects to 172.20.0.1:8080 (or directly to 172.20.0.3:8080)
         // 172.20.0.1 - Address from a Docker bridge network. Used as the gateway for containers within that Docker bridge network
-        const std::string_view SERVER_IP_ADDRESS = (std::getenv("DOCKER_CONTAINER") != nullptr) ? "172.20.0.1" : "127.0.0.1";
+        const std::string_view SERVER_IP_ADDRESS = (std::getenv("DOCKER_CONTAINER") != nullptr) ? "172.20.0.3" : "127.0.0.1";
         constexpr int PORT = 8080;
         constexpr int BUFFER_SIZE = 1024;
     }
