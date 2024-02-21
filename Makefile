@@ -11,8 +11,8 @@ configure: conan
 build: configure
 	cd build && cmake --build . -j$(nproc)
 run_server:
-	./build/src/App-Server/exe_server
+	./build/src/app_server/exe_server
 run_client:
-	./build/src/App-Client/exe_client
+	./build/src/app_client/exe_client
 run_tests:
 	./build/tests/exe_tests

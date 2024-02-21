@@ -11,11 +11,5 @@ target_compile_options(exe_flags INTERFACE
 
 include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 
-find_package(OpenSSL REQUIRED)
-find_package(libpqxx REQUIRED)
-find_package(Boost REQUIRED)
-find_package(nlohmann_json REQUIRED)
-find_package(GTest REQUIRED)
-
 add_subdirectory(src)
 add_subdirectory(tests)

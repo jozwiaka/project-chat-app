@@ -1,7 +1,0 @@
-add_subdirectory(User)
-add_subdirectory(Client)
-add_subdirectory(Commands)
-add_subdirectory(CommandHandler)
-add_subdirectory(CLI)
-add_executable(exe_client main.cpp)
-target_link_libraries(exe_client PRIVATE exe_flags CLI)

@@ -1,7 +1,9 @@
+find_package(GTest REQUIRED)
+
 add_executable(exe_tests main.cpp)
 
-target_link_libraries(exe_tests PRIVATE exe_flags pthread ${GTest_LIBRARIES} CLI Server)
-target_include_directories(exe_tests PRIVATE ${GTest_INCLUDE_DIRS} "../src/App-Common/")
+target_link_libraries(exe_tests PRIVATE exe_flags pthread ${GTest_LIBRARIES} cli server)
+target_include_directories(exe_tests PRIVATE ${GTest_INCLUDE_DIRS})
 
 enable_testing()
 find_program(MEMORYCHECK_COMMAND valgrind)
