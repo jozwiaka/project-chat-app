@@ -9,7 +9,7 @@ conan: prepare
 configure: conan
 	cd build && cmake ..
 build: configure
-	cd build && cmake --build . -v
+	cd build && cmake --build . -j$(nproc)
 run_server:
 	./build/src/App-Server/exe_server
 run_client:
