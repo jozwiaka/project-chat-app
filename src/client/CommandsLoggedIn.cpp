@@ -9,6 +9,7 @@
 #include "Commands.hpp"
 #include "CommandsLoggedIn.hpp"
 #include "User.hpp"
+#include "Constants.hpp"
 
 CommandsLoggedIn::CommandsLoggedIn(int clientSocket, User &user) : Commands(clientSocket, user)
 {
@@ -39,10 +40,10 @@ void CommandsLoggedIn::Message(std::string receiver, std::string content)
     }
 
     Json request;
-    request[Config::JsonHeaders::ACTION] = Config::Actions::SEND_MESSAGE_TO_USER;
-    request[Config::JsonHeaders::Message::MESSAGE][Config::JsonHeaders::Message::SENDER_USERNAME] = m_User.GetUsername();
-    request[Config::JsonHeaders::Message::MESSAGE][Config::JsonHeaders::Message::RECEIVER_USERNAME] = receiver;
-    request[Config::JsonHeaders::Message::MESSAGE][Config::JsonHeaders::Message::CONTENT] = content;
+    request[JsonHeader::ACTION] = Action::SEND_MESSAGE_TO_USER;
+    request[JsonHeader::Message::MESSAGE][JsonHeader::Message::SENDER_USERNAME] = m_User.GetUsername();
+    request[JsonHeader::Message::MESSAGE][JsonHeader::Message::RECEIVER_USERNAME] = receiver;
+    request[JsonHeader::Message::MESSAGE][JsonHeader::Message::CONTENT] = content;
     JsonHandler::SendJson(m_ClientSocket, request);
 
     Json response;
@@ -58,25 +59,25 @@ void CommandsLoggedIn::ShowChat(std::string receiver)
     }
 
     Json request;
-    request[Config::JsonHeaders::ACTION] = Config::Actions::SHOW_CHAT_HISTORY_WITH_USER;
-    request[Config::JsonHeaders::Message::MESSAGES][Config::JsonHeaders::Message::SENDER_USERNAME] = m_User.GetUsername();
-    request[Config::JsonHeaders::Message::MESSAGES][Config::JsonHeaders::Message::RECEIVER_USERNAME] = receiver;
+    request[JsonHeader::ACTION] = Action::SHOW_CHAT_HISTORY_WITH_USER;
+    request[JsonHeader::Message::MESSAGES][JsonHeader::Message::SENDER_USERNAME] = m_User.GetUsername();
+    request[JsonHeader::Message::MESSAGES][JsonHeader::Message::RECEIVER_USERNAME] = receiver;
     JsonHandler::SendJson(m_ClientSocket, request);
 
     Json response;
     JsonHandler::ReceiveJson(m_ClientSocket, response);
-    JsonHandler::Print2D(response[Config::JsonHeaders::Message::MESSAGES]);
+    JsonHandler::Print2D(response[JsonHeader::Message::MESSAGES]);
 }
 
 void CommandsLoggedIn::ListUsers()
 {
     Json request;
-    request[Config::JsonHeaders::ACTION] = Config::Actions::LIST_USERS;
+    request[JsonHeader::ACTION] = Action::LIST_USERS;
     JsonHandler::SendJson(m_ClientSocket, request);
 
     Json response;
     JsonHandler::ReceiveJson(m_ClientSocket, response);
-    Json usersJson = response[Config::JsonHeaders::User::USERS];
+    Json usersJson = response[JsonHeader::User::USERS];
     std::cout << "Users: " << std::endl;
     JsonHandler::Print2D(usersJson);
 }

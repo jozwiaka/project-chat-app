@@ -9,19 +9,20 @@
 #include "ClientHandler.hpp"
 #include <optional>
 #include "AuthenticationManager.hpp"
+#include "Constants.hpp"
 
 ClientHandler::ClientHandler(int clientSocket, ChatDatabase &database) : m_ClientSocket{clientSocket}, m_Database{database}, m_Stop{false}
 {
 #ifdef DEBUG
     std::cout << "ClientHandler::m_ClientSocket = " << m_ClientSocket << std::endl;
 #endif
-    RegisterActionHandler(Config::Actions::CREATE_USER.data(), &ClientHandler::HandleCreateUser);
-    RegisterActionHandler(Config::Actions::VERIFY_USER.data(), &ClientHandler::HandleVerifyUser);
-    RegisterActionHandler(Config::Actions::LIST_USERS.data(), &ClientHandler::HandleListUsers);
-    RegisterActionHandler(Config::Actions::SEND_MESSAGE_TO_USER.data(), &ClientHandler::HandleSendMessageToUser);
-    RegisterActionHandler(Config::Actions::SHOW_CHAT_HISTORY_WITH_USER.data(), &ClientHandler::HandleShowChatHistoryWithUser);
-    RegisterActionHandler(Config::Actions::TRUNCATE_TABLES.data(), &ClientHandler::HandleTruncateTables);
-    RegisterActionHandler(Config::Actions::CHECK_CONNECTION_WITH_SERVER.data(), &ClientHandler::HandleCheckConnectionWithServer);
+    RegisterActionHandler(Action::CREATE_USER.data(), &ClientHandler::HandleCreateUser);
+    RegisterActionHandler(Action::VERIFY_USER.data(), &ClientHandler::HandleVerifyUser);
+    RegisterActionHandler(Action::LIST_USERS.data(), &ClientHandler::HandleListUsers);
+    RegisterActionHandler(Action::SEND_MESSAGE_TO_USER.data(), &ClientHandler::HandleSendMessageToUser);
+    RegisterActionHandler(Action::SHOW_CHAT_HISTORY_WITH_USER.data(), &ClientHandler::HandleShowChatHistoryWithUser);
+    RegisterActionHandler(Action::TRUNCATE_TABLES.data(), &ClientHandler::HandleTruncateTables);
+    RegisterActionHandler(Action::CHECK_CONNECTION_WITH_SERVER.data(), &ClientHandler::HandleCheckConnectionWithServer);
 }
 
 ClientHandler::~ClientHandler() { Stop(); }
@@ -83,7 +84,7 @@ void ClientHandler::HandleAction()
     std::cout << "Request: " << std::endl;
     std::cout << request << std::endl;
 
-    std::string action = request[Config::JsonHeaders::ACTION];
+    std::string action = request[JsonHeader::ACTION];
     Json response;
     if (m_ActionHandlers.find(action) != m_ActionHandlers.end())
     {
@@ -91,7 +92,7 @@ void ClientHandler::HandleAction()
     }
     else
     {
-        response[Config::JsonHeaders::STATUS] = "Unknown action";
+        response[JsonHeader::STATUS] = "Unknown action";
     }
 
     if (!JsonHandler::SendJson(m_ClientSocket, response))
@@ -104,24 +105,24 @@ void ClientHandler::HandleAction()
 
 void ClientHandler::HandleCreateUser(const Json &request, Json &response)
 {
-    std::string username = request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::USERNAME];
-    std::string password = request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::PASSWORD];
+    std::string username = request[JsonHeader::User::USER][JsonHeader::User::USERNAME];
+    std::string password = request[JsonHeader::User::USER][JsonHeader::User::PASSWORD];
     auto [passwordHash, salt] = AuthenticationManager::HashPassword(password);
 
     if (m_Database.CreateUser(username, passwordHash, salt).has_value())
     {
-        response[Config::JsonHeaders::STATUS] = Config::Statuses::SUCCESS.data();
+        response[JsonHeader::STATUS] = Status::SUCCESS.data();
     }
     else
     {
-        response[Config::JsonHeaders::STATUS] = Config::Statuses::ERROR.data();
+        response[JsonHeader::STATUS] = Status::ERROR.data();
     }
 }
 
 void ClientHandler::HandleVerifyUser(const Json &request, Json &response)
 {
-    const std::string &username = request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::USERNAME];
-    const std::string &password = request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::PASSWORD];
+    const std::string &username = request[JsonHeader::User::USER][JsonHeader::User::USERNAME];
+    const std::string &password = request[JsonHeader::User::USER][JsonHeader::User::PASSWORD];
 
     auto resultSalt = m_Database.GetSaltByUsername(username);
     auto resultPasswordHash = m_Database.GetPasswordHashByUsername(username);
@@ -130,11 +131,11 @@ void ClientHandler::HandleVerifyUser(const Json &request, Json &response)
     {
         if (AuthenticationManager::VerifyPassword(password, resultPasswordHash.value()[0][0], resultSalt.value()[0][0]))
         {
-            response[Config::JsonHeaders::STATUS] = Config::Statuses::SUCCESS.data();
+            response[JsonHeader::STATUS] = Status::SUCCESS.data();
             return;
         }
     }
-    response[Config::JsonHeaders::STATUS] = Config::Statuses::ERROR.data();
+    response[JsonHeader::STATUS] = Status::ERROR.data();
 }
 
 void ClientHandler::HandleListUsers(const Json &request, Json &response)
@@ -142,20 +143,20 @@ void ClientHandler::HandleListUsers(const Json &request, Json &response)
     auto resultUsers = m_Database.ListUsers();
     if (resultUsers.has_value())
     {
-        response[Config::JsonHeaders::User::USERS] = JsonHandler::Convert2dArrayTo2dJsonArray(resultUsers.value());
-        response[Config::JsonHeaders::STATUS] = Config::Statuses::SUCCESS.data();
+        response[JsonHeader::User::USERS] = JsonHandler::Convert2dArrayTo2dJsonArray(resultUsers.value());
+        response[JsonHeader::STATUS] = Status::SUCCESS.data();
     }
     else
     {
-        response[Config::JsonHeaders::STATUS] = Config::Statuses::ERROR.data();
+        response[JsonHeader::STATUS] = Status::ERROR.data();
     }
 }
 
 void ClientHandler::HandleSendMessageToUser(const Json &request, Json &response)
 {
-    std::string sender = request[Config::JsonHeaders::Message::MESSAGE][Config::JsonHeaders::Message::SENDER_USERNAME];
-    std::string receiver = request[Config::JsonHeaders::Message::MESSAGE][Config::JsonHeaders::Message::RECEIVER_USERNAME];
-    std::string content = request[Config::JsonHeaders::Message::MESSAGE][Config::JsonHeaders::Message::CONTENT];
+    std::string sender = request[JsonHeader::Message::MESSAGE][JsonHeader::Message::SENDER_USERNAME];
+    std::string receiver = request[JsonHeader::Message::MESSAGE][JsonHeader::Message::RECEIVER_USERNAME];
+    std::string content = request[JsonHeader::Message::MESSAGE][JsonHeader::Message::CONTENT];
 
     auto resultSenderID = m_Database.GetIDByUsername(sender);
     auto resultReceiverID = m_Database.GetIDByUsername(receiver);
@@ -163,23 +164,23 @@ void ClientHandler::HandleSendMessageToUser(const Json &request, Json &response)
     {
         if (m_Database.CreateMessage(resultSenderID.value()[0][0], resultReceiverID.value()[0][0], content).has_value())
         {
-            response[Config::JsonHeaders::STATUS] = Config::Statuses::SUCCESS.data();
+            response[JsonHeader::STATUS] = Status::SUCCESS.data();
             return;
         }
     }
-    response[Config::JsonHeaders::STATUS] = Config::Statuses::ERROR.data();
+    response[JsonHeader::STATUS] = Status::ERROR.data();
 }
 
 void ClientHandler::HandleShowChatHistoryWithUser(const Json &request, Json &response)
 {
-    std::string sender = request[Config::JsonHeaders::Message::MESSAGES][Config::JsonHeaders::Message::SENDER_USERNAME];
-    std::string receiver = request[Config::JsonHeaders::Message::MESSAGES][Config::JsonHeaders::Message::RECEIVER_USERNAME];
+    std::string sender = request[JsonHeader::Message::MESSAGES][JsonHeader::Message::SENDER_USERNAME];
+    std::string receiver = request[JsonHeader::Message::MESSAGES][JsonHeader::Message::RECEIVER_USERNAME];
 
     auto resultMessages = m_Database.ListMessages(sender, receiver);
 
     if (!resultMessages.has_value())
     {
-        response[Config::JsonHeaders::STATUS] = Config::Statuses::ERROR.data();
+        response[JsonHeader::STATUS] = Status::ERROR.data();
         return;
     }
 
@@ -195,21 +196,21 @@ void ClientHandler::HandleShowChatHistoryWithUser(const Json &request, Json &res
         formattedStringRow.push_back(content);
         formattedMessages.push_back(formattedStringRow);
     }
-    response[Config::JsonHeaders::Message::MESSAGES] = JsonHandler::Convert2dArrayTo2dJsonArray(formattedMessages);
-    response[Config::JsonHeaders::STATUS] = Config::Statuses::SUCCESS.data();
+    response[JsonHeader::Message::MESSAGES] = JsonHandler::Convert2dArrayTo2dJsonArray(formattedMessages);
+    response[JsonHeader::STATUS] = Status::SUCCESS.data();
 }
 
 void ClientHandler::HandleTruncateTables(const Json &request, Json &response)
 {
     if (!m_Database.ClearDatabase().has_value())
     {
-        response[Config::JsonHeaders::STATUS] = Config::Statuses::ERROR.data();
+        response[JsonHeader::STATUS] = Status::ERROR.data();
         return;
     }
-    response[Config::JsonHeaders::STATUS] = Config::Statuses::SUCCESS.data();
+    response[JsonHeader::STATUS] = Status::SUCCESS.data();
 }
 
 void ClientHandler::HandleCheckConnectionWithServer(const Json &request, Json &response)
 {
-    response[Config::JsonHeaders::STATUS] = Config::Statuses::SUCCESS.data();
+    response[JsonHeader::STATUS] = Status::SUCCESS.data();
 }

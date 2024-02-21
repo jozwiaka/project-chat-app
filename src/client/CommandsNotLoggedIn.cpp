@@ -9,6 +9,7 @@
 #include "Commands.hpp"
 #include "CommandsNotLoggedIn.hpp"
 #include "User.hpp"
+#include "Constants.hpp"
 
 CommandsNotLoggedIn::CommandsNotLoggedIn(int clientSocket, User &user) : Commands(clientSocket, user)
 {
@@ -35,15 +36,15 @@ void CommandsNotLoggedIn::SignIn(std::string username, std::string password)
     }
 
     Json request;
-    request[Config::JsonHeaders::ACTION] = Config::Actions::CREATE_USER;
-    request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::USERNAME] = username;
-    request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::PASSWORD] = password;
+    request[JsonHeader::ACTION] = Action::CREATE_USER;
+    request[JsonHeader::User::USER][JsonHeader::User::USERNAME] = username;
+    request[JsonHeader::User::USER][JsonHeader::User::PASSWORD] = password;
     JsonHandler::SendJson(m_ClientSocket, request);
 
     Json response;
     JsonHandler::ReceiveJson(m_ClientSocket, response);
 
-    if (response[Config::JsonHeaders::STATUS] == Config::Statuses::ERROR)
+    if (response[JsonHeader::STATUS] == Status::ERROR)
     {
         std::cerr << "User with username \"" + username + "\" already exists" << std::endl;
     }
@@ -64,15 +65,15 @@ void CommandsNotLoggedIn::LogIn(std::string username, std::string password)
     }
 
     Json request;
-    request[Config::JsonHeaders::ACTION] = Config::Actions::VERIFY_USER;
-    request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::USERNAME] = username;
-    request[Config::JsonHeaders::User::USER][Config::JsonHeaders::User::PASSWORD] = password;
+    request[JsonHeader::ACTION] = Action::VERIFY_USER;
+    request[JsonHeader::User::USER][JsonHeader::User::USERNAME] = username;
+    request[JsonHeader::User::USER][JsonHeader::User::PASSWORD] = password;
     JsonHandler::SendJson(m_ClientSocket, request);
 
     Json response;
     JsonHandler::ReceiveJson(m_ClientSocket, response);
 
-    if (response[Config::JsonHeaders::STATUS] == Config::Statuses::ERROR)
+    if (response[JsonHeader::STATUS] == Status::ERROR)
     {
         std::cerr << "Error: wrong username or user \"" << username << "\" does not exist." << std::endl;
         return;

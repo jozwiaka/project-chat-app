@@ -8,6 +8,7 @@
 #include "Config.hpp"
 #include "Commands.hpp"
 #include "User.hpp"
+#include "Constants.hpp"
 
 Commands::Commands(int clientSocket, User &user) : m_ClientSocket{clientSocket}, m_User{user} {}
 
@@ -40,7 +41,7 @@ std::vector<std::string> Commands::GetCommands()
 void Commands::ClearDatabase()
 {
     Json request;
-    request[Config::JsonHeaders::ACTION] = Config::Actions::TRUNCATE_TABLES;
+    request[JsonHeader::ACTION] = Action::TRUNCATE_TABLES;
     JsonHandler::SendJson(m_ClientSocket, request);
 
     Json response;
@@ -52,7 +53,7 @@ bool Commands::CheckConnectionWithServer()
     try
     {
         Json request;
-        request[Config::JsonHeaders::ACTION] = Config::Actions::CHECK_CONNECTION_WITH_SERVER;
+        request[JsonHeader::ACTION] = Action::CHECK_CONNECTION_WITH_SERVER;
         if (!JsonHandler::SendJson(m_ClientSocket, request))
         {
             return false;
