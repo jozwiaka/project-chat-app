@@ -1,5 +1,3 @@
-# peertopeerchatapp
+# project-chat-app
 
-.\Server.ps1
-.\Client.ps1
-.\Clean.ps1
+![alt text](img_chat_app.png)

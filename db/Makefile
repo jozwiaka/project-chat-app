@@ -1,5 +1,5 @@
 install:
-	apt update && apt upgrade
+	apt update && apt upgrade -y
 	apt install -y postgresql postgresql-contrib libpq-dev libpqxx-dev
 	systemctl is-active postgresql || service postgresql start
 
